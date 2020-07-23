@@ -11,28 +11,31 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     const covidCases = [{
         title: 'Confirmed',
         body: 'Number of active cases of Covid-19',
-        type: confirmed.value
+        value: confirmed.value,
+        type: 'confirmed'
     }, {
         title: 'Recovered',
         body: 'Number of recoveries from Covid-19',
-        type: recovered.value
+        value: recovered.value,
+        type: 'recovered'
     }, {
         title: 'Deaths',
         body: 'Number of deaths caused by Covid-19',
-        type: deaths.value
+        value: deaths.value,
+        type: 'deaths'
     }]
     return (
         <div className={styles.container}>
             <Grid container spacing={3} justify="center">
                 {
-                    covidCases.map(({ title, body, type }) => (
+                    covidCases.map(({ title, body, value, type}) => (
                         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles[type])}>
                             <CardContent>
                                 <Typography color="textSecondary" gutterBottom>{title}</Typography>
                                 <Typography variant="h5">
                                     <CountUp
                                         start={0}
-                                        end={type}
+                                        end={value}
                                         duration={2.5}
                                         separator=","
                                     >
